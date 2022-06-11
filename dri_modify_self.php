@@ -1,28 +1,28 @@
 <?php
  // Determine the user account for the session
  session_start();
- $userSession = $_SESSION['ope_username'];
-// Check if the operator is already logged in, if not then redirect him to index page
-    if(!(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true)){
-        /* If operator is not logged in but driver is, direct the driver session to index.php
-            withou having to logout the driver logged in */
-            if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-                header("location: index.php");
-                exit();
-            }
+ $userSession = $_SESSION['dri_username'];
 
-         header("location: logout.php");
+ // Check if the driver is already logged in, if not then redirect him to index page
+    if(!(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true)){
+        /* If driver is not logged in but operator is, direct the operator session to index.php
+            withou having to logout the operator logged in */
+        if(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true){
+            header("location: index.php");
+            exit();
+        }
+        
+        header("location: logout.php");
         exit();
     }
     
-     // Check if the driver is already logged in, if yes then log him out
-    if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-        unset($_SESSION["dri_loggedin"]);
-        unset($_SESSION['dri_username']);
+// Check if an operator is already logged in, if yes, log him out
+    if(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true){
+        unset($_SESSION["ope_loggedin"]);
+        unset($_SESSION["ope_username"]);
         //exit();
     }
 ?>
-
 
 <?php
 // Include config file
@@ -30,13 +30,12 @@ require_once "connect.php";
 
 // Define variables and initialize with empty values
 $username = $psw = $fname = $mname = $lname = $contactno = $address = $bday = "";
- $username_err = $psw_err = $fname_err = $mname_err = $lname_err = $contactno_err = $address_err = $bday_err =  "";
+$username_err = $psw_err = $fname_err = $mname_err = $lname_err = $contactno_err = $address_err = $bday_err =  "";
 
 // Processing form data when form is submitted
 if (isset($_POST["username"]) && !empty($_POST["username"])) {
     
 
-    
 
     // Validate username
     $input_username = trim($_POST["username"]);
@@ -110,14 +109,14 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
         && empty($lname_err) && empty($contact_err) && empty($address_err) && empty($bday_err)
     ) {
         // Prepare an update statement
-        $sql = "UPDATE operators SET ope_username=?, password=?, fname=?, mname=?, lname=?, contactno=?, 
-                address=?, bday=? WHERE ope_username=?";
+        $sql = "UPDATE drivers SET  dri_username=?, password=?, fname=?, mname=?, lname=?, contactno=?, 
+                address=?, bday=? WHERE dri_username=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param(
                 $stmt,
-                "sssssisss",
+                "ssssssisss",
                
                 $param_username,
                 $param_psw,
@@ -131,7 +130,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
             );
 
             // Set parameters
-           
+         
             $param_username = $username;
             $param_psw = $psw;
             $param_fname = $fname;
@@ -144,10 +143,10 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                // Update the value of $_SESSION["ope_username"] with the new ope_username, if there is a new one
-                $_SESSION["ope_username"] = $username;
+                // Update the value of $_SESSION["dri_username"] with the new dri_username, if there is a new one
+                $_SESSION["dri_username"] = $username;
                 // Records updated successfully. Redirect to landing page
-                header("location: ope_dashboard.php");
+                header("location: dri_dashboard.php");
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -162,11 +161,11 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
     mysqli_close($link);
 } else {
     // Check existence of id parameter before processing further
-    if (isset($_SESSION["ope_username"]) && !empty(trim($_SESSION["ope_username"]))) {
+    if (isset($_SESSION["dri_username"]) && !empty(trim($_SESSION["dri_username"]))) {
         
 
         // Prepare a select statement
-        $sql = "SELECT * FROM operators WHERE ope_username = ?";
+        $sql = "SELECT * FROM drivers WHERE dri_username = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -184,8 +183,8 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                     // Retrieve individual field value
-                  
-                    $username = $row["ope_username"];
+                   
+                    $username = $row["dri_username"];
                     $psw = $row["password"];
                     $fname = $row["fname"];
                     $mname = $row["mname"];
@@ -283,7 +282,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="ope_dashboard.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <a href="dri_dashboard.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
                 </div>
             </div>
