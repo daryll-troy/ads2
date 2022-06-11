@@ -1,0 +1,47 @@
+body {
+    min-height: 100vh;
+}
+
+                    /* header */
+
+.jumbotron {
+    background-color: lavender;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+
+
+
+.head-container .logo {
+    width: 10em;
+    margin: 1em;
+    margin-left: 0;
+}
+
+.dropdown,
+.row .col-lg-8 h1,
+.row .col-lg-2:nth-child(1){
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row .col-lg-8 h1{
+    font-size: 3em;
+}
+
+
+@media only screen and (max-width: 960px) {
+    .head-container .logo {
+        float: none;
+    }
+
+    .head-container{
+        padding-bottom: 1em;
+    }
+}
+
+                    /* content */
+
+                    
