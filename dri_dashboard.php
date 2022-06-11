@@ -128,7 +128,7 @@
                     // Include config file
                     require "connect.php";
 
-                     // Get the operator email of this user operator
+                     // Get the ope_email of this driver
                      $getDriOpeEmail = "SELECT ope_email FROM drivers WHERE dri_username = '$userSession'";
                      if($getDriEmailRes = mysqli_query($link, $getDriOpeEmail)){
                          if(mysqli_num_rows($getDriEmailRes) > 0){

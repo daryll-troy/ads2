@@ -116,7 +116,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param(
                 $stmt,
-                "ssssssisss",
+                "sssssisss",
                
                 $param_username,
                 $param_psw,
