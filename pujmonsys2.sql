@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 07:42 AM
+-- Generation Time: Jun 12, 2022 at 02:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -52,7 +52,7 @@ CREATE TABLE `drivers` (
   `fname` varchar(100) DEFAULT NULL,
   `mname` varchar(100) DEFAULT NULL,
   `lname` varchar(100) DEFAULT NULL,
-  `contactno` int(11) NOT NULL,
+  `contactno` varchar(11) NOT NULL,
   `address` varchar(100) DEFAULT NULL,
   `bday` date DEFAULT NULL,
   `ope_email` varchar(100) DEFAULT NULL
@@ -63,12 +63,10 @@ CREATE TABLE `drivers` (
 --
 
 INSERT INTO `drivers` (`email_add`, `dri_username`, `password`, `fname`, `mname`, `lname`, `contactno`, `address`, `bday`, `ope_email`) VALUES
-('charlie', 'john', 'helen', 'dinausor', 'fgsdf', 'gfgsdf', 456345, 'far', '2000-10-07', 'celtics'),
-('e', 'e', 'e', 'e', 'e', 'e', 123, 'e', '2001-02-02', 'lava'),
-('g', 'g', 'g', 'g', 'g', 'g', 45, 'g', '2011-02-02', 'nana'),
-('h', 'h', 'h', 'hannah', 'honey', 'hamburger', 345, 'hellot', '2001-02-02', 'lava'),
-('r', 'rara', 'red', 'rica', 'randa', 'roba', 564, 'rararararwwr', '2001-02-02', 'nana'),
-('waley', 'waley', 'waley', 'a', 'adoy', 'a', 5, '345', '2002-01-01', 'lava');
+('e@gmail.com', 'ethan', 'emb', 'Ethan', 'Ennis', 'Ericson', '09542154879', 'Elon Musk St., Dagupan City', '2001-02-02', 'joke@gmail.com'),
+('h@gmail.com', 'hena', 'him', 'Hannah', 'Honey', 'Hamburger', '09321524567', 'Hilot, Manaoag', '2001-02-02', 'fer@gmail.com'),
+('r@gmail.com', 'rara', 'red', 'Rica', 'Rwanda', 'Robust', '09632154789', 'Raul, Mangaldan', '2001-02-02', 'joke@gmail.com'),
+('waley@gmail.com', 'wally', 'walwal', 'Anita', 'Rose', 'Anglit', '09301695412', 'Bilaokan, Karael', '2002-01-01', 'fer@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -83,7 +81,7 @@ CREATE TABLE `operators` (
   `fname` varchar(100) DEFAULT NULL,
   `mname` varchar(100) DEFAULT NULL,
   `lname` varchar(100) DEFAULT NULL,
-  `contactno` int(11) NOT NULL,
+  `contactno` varchar(11) NOT NULL,
   `address` varchar(100) DEFAULT NULL,
   `bday` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -93,10 +91,8 @@ CREATE TABLE `operators` (
 --
 
 INSERT INTO `operators` (`email_add`, `ope_username`, `password`, `fname`, `mname`, `lname`, `contactno`, `address`, `bday`) VALUES
-('akoay@gmail.com', 'ddfassa', '123', 'sada', 'asds', 'fgds', 123454, 'dfgds', '1997-08-12'),
-('celtics', 'win', 'yehey', 'john', 'wall', 'tatum', 145612385, 'celtics man', '2001-02-02'),
-('lava', 'i', 'i', 'chord', 'simon', 'stacy', 789456, 'seven', '2002-01-01'),
-('nana', 'f', 'f', 'ferdinand', 'magellan', 'marcos', 4895312, 'ilocos region 1', '2019-08-08');
+('fer@gmail.com', 'fin', 'fer', 'Ferdinand', 'Magellan', 'Marcos', '09301524578', 'Manila, Philippines', '2001-02-02'),
+('joke@gmail.com', 'jim', 'jeje', 'Jordi', 'Jacinto', 'Joenas', '09621542587', 'Jakarta, Indonesia', '2001-01-01');
 
 --
 -- Indexes for dumped tables
