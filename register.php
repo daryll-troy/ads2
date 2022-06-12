@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" placeholder="Last Name" name="lname" id="lname" required>
 
             <label for="contactno"><b>Contact No</b></label><br>
-            <input type="number" placeholder="Contact No" name="contactno" id="contactno" required>
+            <input type="text" placeholder="Contact No" name="contactno" id="contactno" required>
             <br><br>
 
             <label for="address"><b>Address</b></label>
