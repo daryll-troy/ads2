@@ -92,7 +92,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
                         <div class="alert alert-danger">
                             <input type="hidden" name="username" value="<?php echo trim($_GET["dri_username"]); ?>" />
                             
-                            <p>Are you sure you want to delete this operator record?</p>
+                            <p>Are you sure you want to delete this driver record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="adm_dashboard.php" class="btn btn-secondary">No </a>
