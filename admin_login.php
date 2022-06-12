@@ -128,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <a href="https://www.google.com.ph/"><button type="button" class="cancelbtn">Cancel </button></a>
+            <a href="index.php"><button type="button" class="cancelbtn">Cancel </button></a>
         </div>
     </form>
 </body>

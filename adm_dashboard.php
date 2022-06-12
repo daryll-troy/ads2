@@ -56,7 +56,7 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
 <body>
     <div class="wrapper">
         
-        <!-- Display the all operators' details -->
+        <!-- Display the all Operators' details -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -96,8 +96,74 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                         echo "<td>" . $row['bday'] . "</td>";
                                        
                                       echo "<td>";
-                                            echo '<a href="#?dri_username='. $row['ope_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
-                                            echo '<a href="#?dri_username='. $row['ope_username'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="adm_read_ope.php?ope_username='. $row['ope_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
+                                            echo '<a href="adm_delete_ope.php?ope_username='. $row['ope_username'] . '?email_add=' .$row['email_add'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            
+                                        echo "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                            // Free result set
+                            mysqli_free_result($result);
+                        } else{
+                            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                        }
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+ 
+                    // Close connection
+                    mysqli_close($link);
+                    ?>
+                </div>
+            </div>        
+        </div>
+
+
+         <!-- Display the all Drivers' details -->
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mt-5 mb-3 clearfix">
+                    
+                        <h2 class="pull-left">All Drivers Details</h2>
+                        
+                    </div>
+                    <?php
+                    // Include config file
+                    require "connect.php ";
+
+                   
+                    
+                    // Attempt select query execution
+                    $sql = "SELECT * FROM drivers";
+                    if($result = mysqli_query($link, $sql)){
+                        if(mysqli_num_rows($result) > 0){
+                            echo '<table class="table table-bordered table-striped">';
+                                echo "<thead>";
+                                    echo "<tr>";
+                                        
+                                       echo "<th>Name</th>";
+                                        echo "<th>Contact No</th>";
+                                        echo "<th>Address</th>";
+                                        echo "<th>Birth Date</th>";
+                                       echo "<th>Action</th>";
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while($row = mysqli_fetch_array($result)){
+                                    echo "<tr>";
+                                       
+                                      echo "<td>" . $row['fname'] . " " . $row['mname'] . " " . $row['lname'] . "</td>";
+                                        echo "<td>" . $row['contactno'] . "</td>";
+                                        echo "<td>" . $row['address'] . "</td>";
+                                        echo "<td>" . $row['bday'] . "</td>";
+                                       
+                                      echo "<td>";
+                                            echo '<a href="adm_read_dri.php?dri_username='. $row['dri_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
+                                            echo '<a href="adm_delete_dri.php?dri_username='. $row['dri_username'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            
                                         echo "</td>";
                                     echo "</tr>";
                                 }

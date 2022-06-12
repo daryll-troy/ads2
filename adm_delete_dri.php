@@ -1,33 +1,28 @@
 <?php
- // Determine the user account for the session
- session_start();
+// Determine the user account for the session
+session_start();
+
 
 // Check if the operator is already logged in, if not then redirect him to index page
-    if(!(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true)){
-        /* If operator is not logged in but driver is, direct the driver session to index.php
-            withou having to logout the driver logged in */
-            if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-                header("location: index.php");
-                exit();
-            }
+if (!(isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true)) {
 
-         header("location: logout.php");
-        exit();
-    }
-    
-    // Check if the driver is already logged in, if yes, log him out
-    if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-        unset($_SESSION["dri_loggedin"]);
-        unset($_SESSION['dri_username']);
-        //exit();
-    }
+    header("location: logout.php");
+    exit();
+}
 
-    // Check if an admin is already logged in, if yes, log him out
-    if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
-        unset($_SESSION["adm_loggedin"]);
-        unset($_SESSION['adm_username']);
-    }
+// Check if a driver is already logged in, if yes, log him out
+if (isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true) {
+    unset($_SESSION["dri_loggedin"]);
+    unset($_SESSION['dri_username']);
+}
+
+// Check if an operator is already logged in, if yes, log him out
+if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
+    unset($_SESSION["ope_loggedin"]);
+    unset($_SESSION['ope_username']);
+}
 ?>
+
 
 <?php
 // Process delete operation after confirmation
@@ -35,6 +30,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
     // Include config file
     require_once "connect.php";
 
+     
     // Prepare a delete statement
     $sql = "DELETE FROM drivers WHERE dri_username = ?";
 
@@ -48,12 +44,13 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Records deleted successfully. Redirect to landing page
-            header("location: ope_dashboard.php");
+            header("location: adm_dashboard.php");
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
         }
     }
+    
 
     // Close statement
     mysqli_stmt_close($stmt);
@@ -94,10 +91,11 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="username" value="<?php echo trim($_GET["dri_username"]); ?>" />
-                            <p>Are you sure you want to delete this employee record?</p>
+                            
+                            <p>Are you sure you want to delete this operator record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="ope_dashboard.php" class="btn btn-secondary">No </a>
+                                <a href="adm_dashboard.php" class="btn btn-secondary">No </a>
                             </p>
                         </div>
                     </form>

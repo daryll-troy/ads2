@@ -22,6 +22,12 @@
         unset($_SESSION["ope_username"]);
         //exit();
     }
+
+    // Check if an admin is already logged in, if yes, log him out
+if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
+    unset($_SESSION["adm_loggedin"]);
+    unset($_SESSION['adm_username']);
+}
 ?>
 
 

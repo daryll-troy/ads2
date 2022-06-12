@@ -1,40 +1,33 @@
 <?php
- // Determine the user account for the session
- session_start();
- $userSession = $_SESSION['ope_username'];
+// Determine the user account for the session
+session_start();
+$userSession = $_SESSION['adm_username'];
 
 // Check if the operator is already logged in, if not then redirect him to index page
-    if(!(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true)){
-        /* If operator is not logged in but driver is, direct the driver session to index.php
-            withou having to logout the driver logged in */
-            if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-                header("location: index.php");
-                exit();
-            }
+if (!(isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true)) {
 
-         header("location: logout.php");
-        exit();
-    }
-    
-    // Check if a driver is already logged in, if yes, log him out
-    if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
-        unset($_SESSION["dri_loggedin"]);
-        unset($_SESSION['dri_username']);
-        
-    }
+    header("location: logout.php");
+    exit();
+}
 
-    // Check if an admin is already logged in, if yes, log him out
-if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
-    unset($_SESSION["adm_loggedin"]);
-    unset($_SESSION['adm_username']);
+// Check if a driver is already logged in, if yes, log him out
+if (isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true) {
+    unset($_SESSION["dri_loggedin"]);
+    unset($_SESSION['dri_username']);
+}
+
+// Check if an operator is already logged in, if yes, log him out
+if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
+    unset($_SESSION["ope_loggedin"]);
+    unset($_SESSION['ope_username']);
 }
 ?>
 
 
-<!-- Read the details of this operator -->
+<!-- Read the details of an operator -->
 <?php
-// Check existence of operator session parameter before processing further
-if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username']))){
+// Check existence of id parameter before processing further
+if (isset($_GET["ope_username"]) && !empty(trim($_GET["ope_username"]))){
     // Include config file
     require_once "connect.php";
     
@@ -46,7 +39,7 @@ if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username'])))
         mysqli_stmt_bind_param($stmt, "s", $param_username);
         
         // Set parameters
-        $param_username = trim($userSession);
+        $param_username = trim($_GET["ope_username"]);
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
@@ -61,6 +54,7 @@ if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username'])))
                 $email = $row["email_add"];
                 $username = $row["ope_username"];
                 $password = $row["password"];
+              
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
@@ -88,7 +82,7 @@ if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username'])))
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Credentials | Operator</title>
+    <title>View Credentials | Operator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .wrapper{
@@ -102,7 +96,7 @@ if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username'])))
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="mt-5 mb-3">My Credentials</h1>
+                    <h1 class="mt-5 mb-3">View Credentials</h1>
                     <div class="form-group">
                         <label>Email</label>
                         <p><b><?php echo $email; ?></b></p>
@@ -116,7 +110,7 @@ if (isset($_SESSION['ope_username']) && !empty(trim($_SESSION['ope_username'])))
                         <p><b><?php echo $password; ?></b></p>
                     </div>
                    
-                    <p><a href="ope_dashboard.php" class="btn btn-primary">Back</a></p>
+                    <p><a href="adm_dashboard.php" class="btn btn-primary">Back</a></p>
                 </div>
             </div>        
         </div>
