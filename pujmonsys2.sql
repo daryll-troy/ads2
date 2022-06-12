@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 12:22 PM
+-- Generation Time: Jun 12, 2022 at 07:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `pujmonsys2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `adm_username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`adm_username`, `password`) VALUES
+('admin', '123');
 
 -- --------------------------------------------------------
 
@@ -47,8 +65,9 @@ CREATE TABLE `drivers` (
 INSERT INTO `drivers` (`email_add`, `dri_username`, `password`, `fname`, `mname`, `lname`, `contactno`, `address`, `bday`, `ope_email`) VALUES
 ('charlie', 'john', 'helen', 'dinausor', 'fgsdf', 'gfgsdf', 456345, 'far', '2000-10-07', 'celtics'),
 ('e', 'e', 'e', 'e', 'e', 'e', 123, 'e', '2001-02-02', 'lava'),
-('lom', 'h', 'h', 'h', 'h', 'h', 456, 'h', '2005-01-01', 'nana'),
-('r', 'r', 'r', 'r', 'r', 'r', 564, 'r', '2001-02-02', 'lava'),
+('g', 'g', 'g', 'g', 'g', 'g', 45, 'g', '2011-02-02', 'nana'),
+('h', 'h', 'h', 'hannah', 'honey', 'hamburger', 345, 'hellot', '2001-02-02', 'lava'),
+('r', 'rara', 'red', 'rica', 'randa', 'roba', 564, 'rararararwwr', '2001-02-02', 'nana'),
 ('waley', 'waley', 'waley', 'a', 'adoy', 'a', 5, '345', '2002-01-01', 'lava');
 
 -- --------------------------------------------------------
@@ -74,14 +93,20 @@ CREATE TABLE `operators` (
 --
 
 INSERT INTO `operators` (`email_add`, `ope_username`, `password`, `fname`, `mname`, `lname`, `contactno`, `address`, `bday`) VALUES
-('akoay', 'ddfassa', '123', 'sada', 'asds', 'fgds', 123454, 'dfgds', '1997-08-12'),
+('akoay@gmail.com', 'ddfassa', '123', 'sada', 'asds', 'fgds', 123454, 'dfgds', '1997-08-12'),
 ('celtics', 'win', 'yehey', 'john', 'wall', 'tatum', 145612385, 'celtics man', '2001-02-02'),
-('lava', 'ice', 'metal', 'chord', 'simon', 'stacy', 789456, 'seven', '2002-01-01'),
-('nana', 'f', 'f', 'jghfgf', 'hjgfg', 'ghgfgh', 4895312, 'gfhyydfh', '2019-08-08');
+('lava', 'i', 'i', 'chord', 'simon', 'stacy', 789456, 'seven', '2002-01-01'),
+('nana', 'f', 'f', 'ferdinand', 'magellan', 'marcos', 4895312, 'ilocos region 1', '2019-08-08');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adm_username`);
 
 --
 -- Indexes for table `drivers`

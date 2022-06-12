@@ -81,12 +81,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: ope_dashboard.php");
                 exit();
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                 echo "Oops! Something went wrong. Please try again later.";
             }
+
         }
 
         // Close statement
         mysqli_stmt_close($stmt);
+    }else{
+        
+        header("location: noUser.php");
+        exit();
     }
 
     // Close connection

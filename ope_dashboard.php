@@ -5,8 +5,8 @@
 
 // Check if the operator is already logged in, if not then redirect him to index page
     if(!(isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true)){
-        /* If operator is not logged in but driver is, direct the driver session to index.php
-            withou having to logout the driver logged in */
+        /* If operator is not logged in but a driver is, direct that driver session to index.php
+            without having to logout the driver logged in */
             if(isset($_SESSION["dri_loggedin"]) && $_SESSION["dri_loggedin"] === true){
                 header("location: index.php");
                 exit();
