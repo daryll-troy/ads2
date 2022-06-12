@@ -166,7 +166,7 @@ if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
                                        
                                       echo "<td>";
                                             echo '<a href="ope_read.php?dri_username='. $row['dri_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
-                                            echo '<a href="ope_delete.php?dri_username='. $row['dri_username'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="ope_delete.php?ope_email='. $row['ope_email'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }

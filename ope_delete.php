@@ -31,19 +31,19 @@
 
 <?php
 // Process delete operation after confirmation
-if (isset($_POST["username"]) && !empty($_POST["username"])) {
+if (isset($_POST["ope_email"]) && !empty($_POST["ope_email"])) {
     // Include config file
     require_once "connect.php";
 
     // Prepare a delete statement
-    $sql = "DELETE FROM drivers WHERE dri_username = ?";
+    $sql = "UPDATE drivers SET ope_email = null WHERE ope_email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $param_id);
 
         // Set parameters
-        $param_id = trim($_POST["username"]);
+        $param_id = trim($_POST["ope_email"]);
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
@@ -62,7 +62,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
     mysqli_close($link);
 } else {
     // Check existence of id parameter
-    if (empty(trim($_GET["dri_username"]))) {
+    if (empty(trim($_GET["ope_email"]))) {
         // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
         exit();
@@ -93,7 +93,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
                     <h2 class="mt-5 mb-3">Delete Record</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
-                            <input type="hidden" name="username" value="<?php echo trim($_GET["dri_username"]); ?>" />
+                            <input type="hidden" name="ope_email" value="<?php echo trim($_GET["ope_email"]); ?>" />
                             <p>Are you sure you want to delete this employee record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
