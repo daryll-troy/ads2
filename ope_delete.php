@@ -94,7 +94,7 @@ if (isset($_POST["ope_email"]) && !empty($_POST["ope_email"])) {
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="ope_email" value="<?php echo trim($_GET["ope_email"]); ?>" />
-                            <p>Are you sure you want to delete this employee record?</p>
+                            <p>Are you sure you want to remove this driver from your employees?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="ope_dashboard.php" class="btn btn-secondary">No </a>
