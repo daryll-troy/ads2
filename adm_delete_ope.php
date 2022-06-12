@@ -2,7 +2,6 @@
 // Determine the user account for the session
 session_start();
 
-
 // Check if the operator is already logged in, if not then redirect him to index page
 if (!(isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true)) {
 
@@ -26,17 +25,12 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
 
 <?php
 // Process delete operation after confirmation
-if (isset($_POST["username"]) && !empty($_POST["username"])) {
+if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["email_add"]) && !empty($_POST["email_add"])) {
     // Include config file
     require_once "connect.php";
 
-    /*
-    $get_email_add = trim($_POST["email_add"]);
-    // Set the ope email of affected drivers to null
-    $removeOpeEmail = "UPDATE drivers SET ope_email = null WHERE ope_email = '$get_email_add'";
-    mysqli_query($link, $removeOpeEmail);
-      */
-      // prepare an update statement on involved drivers' ope_email
+  
+      // prepare an update statement on drivers.ope_email = operators.email_add, to not fail the foreign key constraint
       $removeOpeEmail = "UPDATE drivers SET ope_email = null WHERE ope_email = ?";
       if ($stmt = mysqli_prepare($link, $removeOpeEmail)){
         // Bind variables to the prepared statement as parameters
@@ -54,7 +48,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
       }
       
     
-      /*
+      
     // Prepare a delete statement
     $sql = "DELETE FROM operators WHERE ope_username = ?";
 
@@ -74,7 +68,7 @@ if (isset($_POST["username"]) && !empty($_POST["username"])) {
             echo "Oops! Something went wrong. Please try again later.";
         }
     }
-    */
+    
 
     // Close statement
     mysqli_stmt_close($stmt);

@@ -97,7 +97,7 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                        
                                       echo "<td>";
                                             echo '<a href="adm_read_ope.php?ope_username='. $row['ope_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
-                                            echo '<a href="adm_delete_ope.php?ope_username='. $row['ope_username'] . '?email_add=' .$row['email_add'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="adm_delete_ope.php?ope_username='. $row['ope_username'] . '&email_add=' .$row['email_add'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                             
                                         echo "</td>";
                                     echo "</tr>";
