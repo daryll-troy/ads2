@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-2 "><img src="images/logo.png" alt="logo" class="logo"></div>
                 <div class="col-lg-8 d-flex flex-wrap align-content-center">
-                    <h1 class="title">PUBLIC UTILITY JEEPNEY PASSENGER-REVENUE MONITORING SYSTEM</h1>
+                    <h1 class="title">PUBLIC UTILITY JEEPNEY OPERATOR-DRIVER MONITORING SYSTEM</h1>
                 </div>
                 <div class="col-lg-2 d-flex flex-wrap align-content-center">
                     <div class="dropdown">
