@@ -13,8 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_email = trim($_POST["email"]);
     if (empty($input_email)) {
         $email_err = "Please enter a email.";
-    } elseif (!filter_var($input_email, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))) {
-        $email_err = "Please enter a valid email.";
     } else {
         $email = $input_email;
         $email_err = "";
