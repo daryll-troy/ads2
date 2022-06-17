@@ -36,7 +36,7 @@ if (isset($_POST["dri_username"]) && !empty($_POST["dri_username"])) {
     require_once "connect.php";
 
     // Prepare a delete statement
-    $sql = "UPDATE drivers SET ope_email = null WHERE dri_username =?";
+    $sql = "UPDATE drivers SET ope_email = null, end_date = CURDATE(), status= 'Inactive' WHERE dri_username =?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
@@ -55,6 +55,8 @@ if (isset($_POST["dri_username"]) && !empty($_POST["dri_username"])) {
             echo "Oops! Something went wrong. Please try again later.";
         }
     }
+
+    
 
     // Close statement
     mysqli_stmt_close($stmt);

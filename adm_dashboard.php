@@ -83,6 +83,7 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                         echo "<th>Contact No</th>";
                                         echo "<th>Address</th>";
                                         echo "<th>Birth Date</th>";
+                                      
                                        echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -94,7 +95,7 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                         echo "<td>" . $row['contactno'] . "</td>";
                                         echo "<td>" . $row['address'] . "</td>";
                                         echo "<td>" . $row['bday'] . "</td>";
-                                       
+                                        
                                       echo "<td>";
                                             echo '<a href="adm_read_ope.php?ope_username='. $row['ope_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
                                             echo '<a href="adm_delete_ope.php?ope_username='. $row['ope_username'] . '&email_add=' .$row['email_add'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
@@ -149,6 +150,9 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                         echo "<th>Address</th>";
                                         echo "<th>Birth Date</th>";
                                         echo "<th>Operator Email</th>";
+                                        echo "<th>Hire Date</th>";
+                                        echo "<th>End Date</th>";
+                                        echo "<th>Status</th>";
                                        echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -161,6 +165,9 @@ if (isset($_SESSION["ope_loggedin"]) && $_SESSION["ope_loggedin"] === true) {
                                         echo "<td>" . $row['address'] . "</td>";
                                         echo "<td>" . $row['bday'] . "</td>";
                                         echo "<td>" . $row['ope_email'] . "</td>";
+                                        echo "<td>" . $row['hire_date'] . "</td>";
+                                      echo "<td>" . $row['end_date'] . "</td>";
+                                      echo "<td>" . $row['status'] . "</td>";
                                       echo "<td>";
                                             echo '<a href="adm_read_dri.php?dri_username='. $row['dri_username'] .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';                                         
                                             echo '<a href="adm_delete_dri.php?dri_username='. $row['dri_username'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';

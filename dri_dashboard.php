@@ -87,6 +87,9 @@ if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
                                         echo "<th>Contact No</th>";
                                         echo "<th>Address</th>";
                                         echo "<th>Birth Date</th>";
+                                        echo "<th>Hire Date</th>";
+                                        echo "<th>End Date</th>";
+                                        echo "<th>Status</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -98,6 +101,9 @@ if (isset($_SESSION["adm_loggedin"]) && $_SESSION["adm_loggedin"] === true) {
                                       echo "<td>" . $row['contactno'] . "</td>";
                                       echo "<td>" . $row['address'] . "</td>";
                                       echo "<td>" . $row['bday'] . "</td>";
+                                      echo "<td>" . $row['hire_date'] . "</td>";
+                                      echo "<td>" . $row['end_date'] . "</td>";
+                                      echo "<td>" . $row['status'] . "</td>";
                                        echo "<td>";
                                             echo '<a href="dri_read_self.php' .'" class="mr-3" title="View Credentials" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="dri_modify_self.php' .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';

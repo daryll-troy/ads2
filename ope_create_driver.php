@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before inserting in database
     if (empty($dri_username_err) && $addDriOpeEmail == null) {
         // Prepare an insert statement
-        $sql = "UPDATE drivers SET ope_email = ? WHERE dri_username =?";
+        $sql = "UPDATE drivers SET ope_email = ?, end_date = '0000-00-00', status = 'Active' WHERE dri_username =?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
